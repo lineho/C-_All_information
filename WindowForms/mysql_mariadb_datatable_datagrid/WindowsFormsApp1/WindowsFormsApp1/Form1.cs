@@ -30,8 +30,8 @@ namespace WindowsFormsApp1
 
         //App.config사용하려면 일단 참조추가로 어셈블리에서 System.configuration을 추가해줘야함.
         //Configurationmanager쓰고 알트 엔터하면 부족한 것(using System.Configuration; 채워짐)
-        private string connstr = "Server="+ConfigurationManager.AppSettings["IP"]+"Port="+ConfigurationManager.AppSettings["PORT"]+";"+
-            "Database="+ConfigurationManager.AppSettings["DBNAME"]+";Uid="+ ConfigurationManager.AppSettings["USERID"]+";Pwd="+ConfigurationManager.AppSettings["USERPASSWORD"];
+        private string connstr = "Server=" + ConfigurationManager.AppSettings["IP"] + "," + ConfigurationManager.AppSettings["PORT"] + ";" +
+            "Database=" + ConfigurationManager.AppSettings["DBNAME"] + ";Uid=" + ConfigurationManager.AppSettings["USERID"] + ";Pwd=" + ConfigurationManager.AppSettings["USERPASSWORD"];
 
         public Form1()
         {
@@ -48,6 +48,7 @@ namespace WindowsFormsApp1
             try
             {
                 sqlConn = new MySqlConnection(connstr);
+                sqlConn.Open();
                 MessageBox.Show("데이터베이스연결성공");
             }
             catch(Exception ex)
